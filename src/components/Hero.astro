@@ -1,0 +1,127 @@
+---
+import { Icon } from 'astro-icon/components';
+import { buyLinks, contacts, highlights, media } from '../data/product';
+
+const wb = buyLinks.find((item) => item.primary)!;
+---
+
+<section id="top" class="relative overflow-hidden border-b border-line bg-snow">
+  <div
+    class="frost-grid pointer-events-none absolute inset-0 opacity-70"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="pointer-events-none absolute -right-24 -top-32 h-[420px] w-[420px] rounded-full bg-ice/20 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="shell relative grid items-center gap-12 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20"
+  >
+    <div class="min-w-0">
+      <p class="eyebrow">
+        <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>
+        PRONINE ArcticSport · Tactic 930
+      </p>
+
+      <h1
+        class="mt-5 text-[clamp(2rem,5vw,3.6rem)] font-extrabold leading-[1.08]"
+      >
+        Тактические снегоступы
+        <span class="mt-2 block text-amber">Tactic 930</span>
+      </h1>
+
+      <p class="mt-5 max-w-xl text-lg text-ink/70">
+        Алюминиевая рама, зубцы для сцепления со снегом и крепление easy fix
+        под обувь 35–49. Пара весит 2,4&nbsp;кг. Рекомендуемый вес пользователя
+        со снаряжением — до 120&nbsp;кг. Чехол в комплекте.
+      </p>
+
+      <dl class="mt-8 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
+        {
+          highlights.map((item) => (
+            <div class="card flex min-w-0 flex-col px-3 py-4 text-center">
+              <dt class="order-2 mt-2 text-[10px] font-semibold uppercase tracking-wide text-ink/60">
+                {item.label}
+              </dt>
+              <dd class="order-1 font-heading text-base font-extrabold">
+                {item.value}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href={wb.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          <Icon name="lucide:shopping-cart" class="h-4 w-4 shrink-0" />
+          Купить на Wildberries
+        </a>
+
+        <a href="#contact" class="btn btn-ghost">
+          <Icon name="lucide:send" class="h-4 w-4" />
+          Задать вопрос
+        </a>
+      </div>
+
+      <div
+        class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm"
+      >
+        <a
+          href={contacts.phoneHref}
+          class="inline-flex items-center gap-2 font-semibold hover:text-amber"
+        >
+          <Icon name="lucide:phone" class="h-4 w-4 text-steel" />
+          {contacts.phone}
+        </a>
+
+        <a
+          href={`mailto:${contacts.email}`}
+          class="inline-flex items-center gap-2 font-semibold hover:text-amber"
+        >
+          <Icon name="lucide:mail" class="h-4 w-4 text-steel" />
+          {contacts.email}
+        </a>
+      </div>
+    </div>
+
+    <div class="relative min-w-0">
+      <div
+        class="relative overflow-hidden rounded-[32px] border border-line bg-white p-3 shadow-[0_40px_90px_-50px_rgba(10,16,28,0.6)]"
+      >
+        <img
+          src={media.pairStand}
+          alt="Снегоступы PRONINE Tactic 930 чёрно-белые и чехол"
+          width="900"
+          height="1200"
+          class="w-full rounded-[24px] object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+
+      <div
+        class="animate-float absolute -left-4 bottom-6 hidden items-center gap-3 rounded-2xl border border-line bg-white/95 px-4 py-3 shadow-lg backdrop-blur sm:flex"
+      >
+        <span
+          class="flex h-10 w-10 items-center justify-center rounded-xl bg-ink text-white"
+        >
+          <Icon name="lucide:briefcase" class="h-5 w-5" />
+        </span>
+
+        <span class="leading-tight">
+          <span class="block text-sm font-bold">Чехол в комплекте</span>
+          <span class="mt-1 block text-xs text-steel">
+            Для хранения и переноски
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

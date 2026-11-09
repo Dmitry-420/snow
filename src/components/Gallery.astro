@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components';
+import { media } from '../data/product';
+import GalleryLightbox from './GalleryLightbox.vue';
+
+const shots = [
+  {
+    src: media.pairTilt,
+    alt: 'Пара снегоступов PRONINE Tactic 930 на снегу',
+    span: 'sm:col-span-2 sm:row-span-2',
+  },
+  {
+    src: media.bindingClose,
+    alt: 'Крепление снегоступа PRONINE и зубцы для сцепления',
+    span: '',
+  },
+  {
+    src: media.riverBank,
+    alt: 'Снегоступы PRONINE Tactic 930 на берегу замёрзшей реки',
+    span: '',
+  },
+  {
+    src: media.frameClose,
+    alt: 'Площадка снегоступа PRONINE крупным планом',
+    span: '',
+  },
+  {
+    src: media.promoEasyFix,
+    alt: 'Ботинок в креплении easy fix снегоступа PRONINE',
+    span: 'sm:col-span-2',
+  },
+  {
+    src: media.promoTactic,
+    alt: 'Снегоступы PRONINE Tactic 930',
+    span: '',
+  },
+];
+
+const lightboxShots = shots.map(({ src, alt }) => ({ src, alt }));
+---
+
+<section id="gallery" class="border-b border-line bg-white py-20">
+  <div class="shell">
+    <div class="max-w-2xl">
+      <p class="eyebrow">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+        Галерея
+      </p>
+
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+        Как это выглядит в снегу
+      </h2>
+
+      <p class="mt-4 text-lg text-ink/65">
+        Общий вид, детали рамы и крепление на ботинке.
+        Нажмите на фотографию, чтобы увеличить.
+      </p>
+    </div>
+
+    <div
+      class="mt-12 grid auto-rows-[240px] grid-cols-1 gap-4 sm:grid-cols-3 lg:auto-rows-[230px]"
+    >
+      {
+        shots.map((shot, index) => (
+          <figure
+            class={`group relative overflow-hidden rounded-3xl bg-frost ${shot.span}`}
+          >
+            <a
+              href={shot.src}
+              data-gallery-index={index}
+              class="block h-full w-full"
+              aria-label={`Открыть фото ${index + 1}: ${shot.alt}`}
+            >
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                width="900"
+                height="1200"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+
+              <span class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
+
+              <span class="pointer-events-none absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-ink/60 text-white">
+                <Icon name="lucide:expand" class="h-4 w-4" />
+              </span>
+            </a>
+          </figure>
+        ))
+      }
+    </div>
+
+    <GalleryLightbox client:load shots={lightboxShots} />
+  </div>
+</section>

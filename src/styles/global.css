@@ -1,0 +1,224 @@
+@import '@fontsource-variable/unbounded';
+@import '@fontsource-variable/manrope';
+@import 'tailwindcss';
+
+@source '../';
+
+@theme {
+  --font-heading: 'Unbounded Variable', 'Unbounded', ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0a101c;
+  --color-ink-2: #131d2e;
+  --color-ink-3: #22304a;
+  --color-snow: #f4f7fa;
+  --color-frost: #e7eef5;
+  --color-steel: #7c92ac;
+  --color-ice: #4fc3f7;
+  --color-amber: #ff8a3d;
+  --color-line: #d7e1ec;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--color-snow);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    overflow-wrap: anywhere;
+  }
+
+  ::selection {
+    background: var(--color-amber);
+    color: #fff;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a {
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-ice);
+    outline-offset: 4px;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+}
+
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-steel);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    padding: 0.95rem 1.6rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    text-align: center;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-amber);
+    color: var(--color-ink);
+    box-shadow: 0 18px 40px -20px rgb(255 138 61 / 70%);
+  }
+
+  .btn-primary:hover {
+    background: #ff9d5e;
+  }
+
+  .btn-dark {
+    background: var(--color-ink);
+    color: #fff;
+  }
+
+  .btn-dark:hover {
+    background: var(--color-ink-3);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--color-line);
+    background: #fff;
+    color: var(--color-ink);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-ink);
+  }
+
+  .card {
+    border: 1px solid var(--color-line);
+    border-radius: 24px;
+    background: #fff;
+  }
+
+  .frost-grid {
+    background-image:
+      linear-gradient(to right, rgb(10 16 28 / 5%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(10 16 28 / 5%) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .ink-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 5%) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 5%) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .mobile-bar {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-footer {
+    padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 32px;
+    }
+
+    .site-footer {
+      padding-bottom: 3.5rem;
+    }
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

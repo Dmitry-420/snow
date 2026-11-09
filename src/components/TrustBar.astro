@@ -1,0 +1,34 @@
+---
+import { Icon } from 'astro-icon/components';
+import { highlights } from '../data/product';
+---
+
+<section class="bg-ink text-white" aria-label="Основные характеристики">
+  <div class="shell grid gap-8 py-10 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      highlights.map((item, index) => (
+        <div class="flex items-start gap-4">
+          <span
+            class:list={[
+              'flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl',
+              index === 0
+                ? 'bg-amber text-ink'
+                : 'bg-white/10 text-ice',
+            ]}
+          >
+            <Icon name={item.icon} class="h-5 w-5" />
+          </span>
+
+          <p>
+            <span class="block font-heading text-2xl font-extrabold">
+              {item.value}
+            </span>
+            <span class="mt-1 block text-sm text-white/65">
+              {item.label}
+            </span>
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

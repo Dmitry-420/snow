@@ -1,0 +1,42 @@
+---
+import { Icon } from 'astro-icon/components';
+import { features } from '../data/product';
+---
+
+<section class="border-b border-line bg-white py-20">
+  <div class="shell">
+    <div class="max-w-2xl">
+      <p class="eyebrow">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+        Почему Tactic 930
+      </p>
+
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+        Для зимнего маршрута
+      </h2>
+
+      <p class="mt-4 text-lg text-ink/65">
+        Снегоступы для охоты, рыбалки и прогулок по глубокому снегу.
+        Регулируемое крепление и чехол для переноски уже в комплекте.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map((feature) => (
+          <article class="card group p-7 transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-ink text-ice transition group-hover:bg-amber group-hover:text-ink">
+              <Icon name={feature.icon} class="h-6 w-6" />
+            </span>
+
+            <h3 class="mt-6 text-lg font-bold">{feature.title}</h3>
+
+            <p class="mt-3 text-sm leading-relaxed text-ink/65">
+              {feature.text}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

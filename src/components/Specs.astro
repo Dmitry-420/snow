@@ -1,0 +1,102 @@
+---
+import { Icon } from 'astro-icon/components';
+import { media, specs } from '../data/product';
+---
+
+<section
+  id="specs"
+  class="relative overflow-hidden bg-ink py-20 text-white"
+>
+  <div
+    class="ink-grid pointer-events-none absolute inset-0 opacity-60"
+    aria-hidden="true"
+  ></div>
+
+  <div class="shell relative grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+    <div class="min-w-0">
+      <p class="eyebrow text-ice/80">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+        Характеристики
+      </p>
+
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+        Tactic 930 в цифрах
+      </h2>
+
+      <p class="mt-4 max-w-lg text-white/65">
+        Размеры, материалы, нагрузка и заявленный температурный диапазон.
+      </p>
+
+      <dl class="mt-10 divide-y divide-white/10 border-y border-white/10">
+        {
+          specs.map((spec) => (
+            <div class="grid grid-cols-2 items-baseline gap-4 py-3.5">
+              <dt class="text-sm text-white/65">{spec.label}</dt>
+              <dd class="min-w-0 break-words text-right text-sm font-bold">
+                {spec.value}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="flex min-w-0 flex-col gap-6">
+      <div class="overflow-hidden rounded-[28px] border border-white/10 bg-white/5 p-2">
+        <img
+          src={media.logoClose}
+          alt="Логотип PRONINE Tactic 930 на площадке снегоступа"
+          width="900"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-[22px] object-cover"
+        />
+      </div>
+
+      <div class="rounded-[28px] border border-white/10 bg-white/5 p-7">
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-ice">
+          Артикул
+        </p>
+
+        <p class="mt-2 break-words font-heading text-xl font-extrabold">
+          PRO9-SNOW-STEP
+        </p>
+
+        <ul class="mt-6 space-y-3 text-sm text-white/70">
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-0.5 h-4 w-4 shrink-0 text-amber"
+            />
+            Цвет: чёрный / белый
+          </li>
+
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-0.5 h-4 w-4 shrink-0 text-amber"
+            />
+            Алюминиевая рама и морозостойкая пластиковая площадка
+          </li>
+
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-0.5 h-4 w-4 shrink-0 text-amber"
+            />
+            Ремни, крепления и чехол в комплекте
+          </li>
+
+          <li class="flex items-start gap-3">
+            <Icon
+              name="lucide:check"
+              class="mt-0.5 h-4 w-4 shrink-0 text-amber"
+            />
+            Гарантия 12 месяцев
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,150 @@
+---
+import '../styles/global.css';
+import { contacts, media } from '../data/product';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const site =
+  Astro.site ?? new URL('https://pronine-tactic-930-9qf5hnmu.bobr0.site');
+
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL(media.promoLight, site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': new URL('/#website', site).href,
+      url: site.href,
+      name: 'PRONINE Tactic 930 — тактические снегоступы',
+      inLanguage: 'ru-RU',
+    },
+    {
+      '@type': 'Organization',
+      '@id': new URL('/#organization', site).href,
+      name: contacts.company,
+      url: site.href,
+      email: contacts.email,
+      telephone: contacts.phone,
+    },
+    {
+      '@type': 'Product',
+      '@id': new URL('/#product', site).href,
+      name: 'Снегоступы PRONINE Tactic 930',
+      sku: 'PRO9-SNOW-STEP',
+      description:
+        'Тактические снегоступы PRONINE Tactic 930: алюминий AL6061, 1200 г каждый, предел прочности 165 кг, размер обуви 35–49, заявленная рабочая температура до −60 °C. Чехол в комплекте.',
+      image: [
+        new URL(media.pairStand, site).href,
+        new URL(media.pairTilt, site).href,
+        new URL(media.promoLight, site).href,
+      ],
+      color: 'чёрный / белый',
+      material: 'алюминий, морозостойкий пластик',
+      brand: {
+        '@type': 'Brand',
+        name: 'PRONINE',
+      },
+      additionalProperty: [
+        {
+          '@type': 'PropertyValue',
+          name: 'Вес одного снегоступа',
+          value: '1200 г',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Предел прочности',
+          value: '165 кг',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Рекомендуемый вес со снаряжением',
+          value: 'до 120 кг',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Размер обуви',
+          value: '35–49',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Рабочая температура',
+          value: 'до −60 °C',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Длина',
+          value: '76,4 см',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Ширина',
+          value: '23,5 см',
+        },
+        {
+          '@type': 'PropertyValue',
+          name: 'Гарантия',
+          value: '12 месяцев',
+        },
+      ],
+    },
+  ],
+};
+
+const serializedJsonLd = JSON.stringify(jsonLd).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="theme-color" content="#0a101c" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PRONINE ArcticSport" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta
+      property="og:image:alt"
+      content="Снегоступы PRONINE Tactic 930"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={serializedJsonLd}
+    />
+  </head>
+
+  <body class="bg-snow font-sans text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only fixed left-4 top-4 z-[200] rounded-xl bg-white p-4 text-ink focus:not-sr-only"
+    >
+      Перейти к содержимому
+    </a>
+
+    <slot />
+  </body>
+</html>

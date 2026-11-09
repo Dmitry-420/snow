@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import TrustBar from '../components/TrustBar.astro';
+import Features from '../components/Features.astro';
+import WhereToBuy from '../components/WhereToBuy.astro';
+import Specs from '../components/Specs.astro';
+import Gallery from '../components/Gallery.astro';
+import Video from '../components/Video.astro';
+import InTheBox from '../components/InTheBox.astro';
+import FAQ from '../components/FAQ.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import MobileBar from '../components/MobileBar.astro';
+
+const title =
+  'Снегоступы PRONINE Tactic 930 — характеристики и покупка';
+
+const description =
+  'Снегоступы PRONINE Tactic 930: алюминий AL6061, 1200 г каждый, предел прочности 165 кг, обувь 35–49, заявленная морозостойкость до −60 °C. Чехол в комплекте, гарантия 1 год.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+
+  <main id="main" tabindex="-1">
+    <Hero />
+    <TrustBar />
+    <Features />
+    <WhereToBuy />
+    <Specs />
+    <Gallery />
+    <Video />
+    <InTheBox />
+    <FAQ />
+    <Contact />
+  </main>
+
+  <Footer />
+  <MobileBar />
+</BaseLayout>

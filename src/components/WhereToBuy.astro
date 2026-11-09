@@ -1,0 +1,127 @@
+---
+import { Icon } from 'astro-icon/components';
+import { buyLinks, contacts } from '../data/product';
+---
+
+<section id="buy" class="border-b border-line bg-snow py-20">
+  <div class="shell">
+    <div class="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:items-center">
+      <div>
+        <p class="eyebrow">
+          <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+          Где купить
+        </p>
+
+        <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+          Пара Tactic 930
+        </h2>
+
+        <p class="mt-4 max-w-md text-lg text-ink/65">
+          Выберите удобную площадку: Wildberries, Ozon, Яндекс Маркет
+          или специализированный магазин снаряжения.
+        </p>
+
+        <div class="mt-8">
+          <p class="text-sm font-semibold uppercase tracking-wider text-steel">
+            Цена на маркетплейсах
+          </p>
+
+          <p class="mt-2 font-heading text-3xl font-extrabold sm:text-4xl">
+            от 8 930 ₽
+          </p>
+
+          <p class="mt-3 max-w-md text-sm text-ink/60">
+            Ориентир из исходного предложения. Актуальные цену, наличие
+            и условия доставки смотрите у продавца.
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink/70">
+          <span class="inline-flex items-center gap-2">
+            <Icon name="lucide:check" class="h-4 w-4 text-amber" />
+            Гарантия 12 месяцев
+          </span>
+
+          <span class="inline-flex items-center gap-2">
+            <Icon name="lucide:check" class="h-4 w-4 text-amber" />
+            Чехол в комплекте
+          </span>
+        </div>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          buyLinks.map((link) => (
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[
+                'group flex min-w-0 flex-col justify-between rounded-3xl border p-6 transition hover:-translate-y-1',
+                link.primary
+                  ? 'border-ink bg-ink text-white hover:bg-ink-2'
+                  : 'border-line bg-white text-ink hover:border-ink',
+              ]}
+            >
+              <div>
+                <div class="flex items-center gap-3">
+                  <span
+                    class:list={[
+                      'flex h-10 w-10 shrink-0 items-center justify-center rounded-xl',
+                      link.primary
+                        ? 'bg-amber text-ink'
+                        : 'bg-frost text-ink',
+                    ]}
+                  >
+                    <Icon name="lucide:shopping-bag" class="h-5 w-5" />
+                  </span>
+
+                  <span class="break-words text-base font-bold">
+                    {link.name}
+                  </span>
+                </div>
+
+                <span
+                  class:list={[
+                    'mt-3 block text-sm',
+                    link.primary ? 'text-white/65' : 'text-ink/60',
+                  ]}
+                >
+                  {link.note}
+                </span>
+              </div>
+
+              <span
+                class:list={[
+                  'mt-6 inline-flex items-center gap-2 text-sm font-bold',
+                  link.primary ? 'text-amber' : 'text-ink',
+                ]}
+              >
+                Перейти
+                <Icon name="lucide:arrow-up-right" class="h-4 w-4" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-start justify-between gap-5 rounded-3xl border border-line bg-white p-6 sm:flex-row sm:items-center"
+    >
+      <p class="flex items-start gap-3 text-sm text-ink/70">
+        <Icon
+          name="lucide:info"
+          class="mt-0.5 h-5 w-5 shrink-0 text-ice"
+        />
+        Есть вопрос по креплению или совместимости с обувью?
+        Позвоните — подскажем.
+      </p>
+
+      <a href={contacts.phoneHref} class="btn btn-dark shrink-0">
+        <Icon name="lucide:phone" class="h-4 w-4" />
+        {contacts.phone}
+      </a>
+    </div>
+  </div>
+</section>

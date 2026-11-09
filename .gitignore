@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+.astro/
+.vite/
+.turbo/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.sw?
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Temporary files
+.cache/
+.temp/
+.tmp/
+
+# Platform files
+_sitegin_build.config.js
+webscrapes/

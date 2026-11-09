@@ -1,0 +1,96 @@
+---
+import { Icon } from 'astro-icon/components';
+import { media } from '../data/product';
+
+const items = [
+  {
+    icon: 'lucide:footprints',
+    title: 'Пара Tactic 930',
+    text: 'Рама, площадка и зубцы для сцепления со снегом.',
+  },
+  {
+    icon: 'lucide:refresh-cw',
+    title: 'Крепления easy fix',
+    text: 'Регулируются под обувь с 35-го по 49-й размер.',
+  },
+  {
+    icon: 'lucide:briefcase',
+    title: 'Чехол для переноски',
+    text: 'Для хранения и транспортировки снегоступов.',
+  },
+  {
+    icon: 'lucide:shield-check',
+    title: 'Гарантия 12 месяцев',
+    text: 'Условия гарантийного обслуживания уточняйте у продавца.',
+  },
+];
+---
+
+<section id="in-the-box" class="border-b border-line bg-snow py-20">
+  <div
+    class="shell grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center"
+  >
+    <div class="relative mb-6">
+      <div class="overflow-hidden rounded-[28px] border border-line bg-white p-2">
+        <img
+          src={media.case}
+          alt="Чёрный чехол для снегоступов PRONINE ArcticSport"
+          width="900"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-[22px] object-cover"
+        />
+      </div>
+
+      <div
+        class="absolute -bottom-6 left-5 right-5 rounded-2xl border border-line bg-white p-5 shadow-lg sm:left-8 sm:right-auto sm:w-72"
+      >
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-steel">
+          В комплекте
+        </p>
+
+        <p class="mt-1 font-heading text-xl font-extrabold">
+          Чехол
+        </p>
+
+        <p class="mt-2 text-sm text-ink/65">
+          Для удобного хранения и переноски пары.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <p class="eyebrow">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+        Комплект
+      </p>
+
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+        Что вы получаете
+      </h2>
+
+      <p class="mt-4 max-w-lg text-lg text-ink/65">
+        Снегоступы с креплениями и чехлом для переноски.
+      </p>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        {
+          items.map((item) => (
+            <div class="card p-6">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-frost text-ink">
+                <Icon name={item.icon} class="h-5 w-5" />
+              </span>
+
+              <h3 class="mt-5 text-base font-bold">{item.title}</h3>
+
+              <p class="mt-2 text-sm leading-relaxed text-ink/65">
+                {item.text}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,190 @@
+---
+import { Icon } from 'astro-icon/components';
+import { media } from '../data/product';
+---
+
+<section class="relative overflow-hidden bg-ink-2 py-20 text-white">
+  <div
+    class="ink-grid pointer-events-none absolute inset-0 opacity-50"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="shell relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center"
+  >
+    <div>
+      <p class="eyebrow text-ice/80">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber"></span>
+        Видео
+      </p>
+
+      <h2 class="mt-4 text-3xl font-extrabold sm:text-5xl">
+        Пара в работе
+      </h2>
+
+      <p class="mt-4 text-white/65">
+        Посмотрите на снегоступы в движении и рассмотрите,
+        как располагается ботинок в креплении.
+      </p>
+
+      <ul class="mt-8 space-y-4 text-sm text-white/70">
+        <li class="flex items-start gap-3">
+          <Icon
+            name="lucide:play"
+            class="mt-0.5 h-5 w-5 shrink-0 text-amber"
+          />
+          Демонстрация снегоступов
+        </li>
+
+        <li class="flex items-start gap-3">
+          <Icon
+            name="lucide:snowflake"
+            class="mt-0.5 h-5 w-5 shrink-0 text-amber"
+          />
+          Съёмка на снегу
+        </li>
+
+        <li class="flex items-start gap-3">
+          <Icon
+            name="lucide:ruler"
+            class="mt-0.5 h-5 w-5 shrink-0 text-amber"
+          />
+          Детали посадки и крепления
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="overflow-hidden rounded-[28px] border border-white/10 bg-black/30 p-2 shadow-2xl"
+    >
+      <div class="video-player relative overflow-hidden rounded-[20px]">
+        <video
+          class="block w-full"
+          poster={media.pairTilt}
+          controls
+          playsinline
+          preload="none"
+          aria-label="Демонстрация снегоступов PRONINE Tactic 930"
+        >
+          <source src={media.video} type="video/mp4" />
+          Ваш браузер не поддерживает видео.
+          <a href={media.video}>Скачать видео</a>
+        </video>
+
+        <button
+          type="button"
+          class="video-play"
+          aria-label="Воспроизвести видео"
+          hidden
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="36"
+            height="36"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M8 5.5a1 1 0 0 1 1.53-.848l10 6.5a1 1 0 0 1 0 1.696l-10 6.5A1 1 0 0 1 8 18.5z" />
+          </svg>
+        </button>
+      </div>
+
+      <p
+        class="video-error px-3 pt-3 text-sm text-white/80"
+        role="status"
+        hidden
+      >
+        Не удалось запустить видео.
+        <a href={media.video} class="underline">
+          Открыть видео отдельно
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    transform: translate(-50%, -50%);
+    border: 0;
+    border-radius: 50%;
+    background: rgb(0 0 0 / 60%);
+    color: white;
+    cursor: pointer;
+  }
+
+  .video-play svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .video-play[hidden],
+  .video-error[hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.video-player').forEach((player) => {
+    const video = player.querySelector('video');
+    const button = player.querySelector<HTMLButtonElement>('.video-play');
+    const errorMessage =
+      player.parentElement?.querySelector<HTMLElement>('.video-error');
+
+    if (!video || !button) return;
+
+    video.style.cursor = 'pointer';
+    button.hidden = false;
+
+    function syncButton() {
+      if (!video || !button) return;
+      button.hidden = !video.paused && !video.ended;
+    }
+
+    async function togglePlayback() {
+      if (!video) return;
+
+      if (errorMessage) errorMessage.hidden = true;
+
+      if (!video.paused && !video.ended) {
+        video.pause();
+        return;
+      }
+
+      try {
+        if (video.ended) video.currentTime = 0;
+        await video.play();
+      } catch {
+        syncButton();
+        if (errorMessage) errorMessage.hidden = false;
+      }
+    }
+
+    video.addEventListener('click', (event) => {
+      event.preventDefault();
+      void togglePlayback();
+    });
+
+    button.addEventListener('click', () => {
+      void togglePlayback();
+    });
+
+    video.addEventListener('play', syncButton);
+    video.addEventListener('pause', syncButton);
+    video.addEventListener('ended', syncButton);
+
+    video.addEventListener('error', () => {
+      button.hidden = false;
+      if (errorMessage) errorMessage.hidden = false;
+    });
+  });
+</script>
