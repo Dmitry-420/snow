@@ -1,17 +1,17 @@
-export const media = {
-  case: '/media/projects/12615/ylvcnsYIK.webp',
-  pairTilt: '/media/projects/12615/dgahzfYIL.webp',
-  frameClose: '/media/projects/12615/asthdcYIM.webp',
-  riverBank: '/media/projects/12615/sbazzcYIN.webp',
-  logoClose: '/media/projects/12615/dzxhelYIO.webp',
-  pairStand: '/media/projects/12615/fwsyvhYIP.webp',
-  bindingClose: '/media/projects/12615/tbvojeYIQ.webp',
-  promoCase: '/media/projects/12615/pqfzigYIR.webp',
-  promoFix: '/media/projects/12615/lsycqnYIS.webp',
-  promoEasyFix: '/media/projects/12615/wgdmhbYIT.webp',
-  promoLight: '/media/projects/12615/emeiikYIU.webp',
-  promoTactic: '/media/projects/12615/azhcslYIV.webp',
-  video: '/media/projects/12615/tviqyyYIJ.mp4',
+﻿export const media = {
+  case: `${import.meta.env.BASE_URL}media/projects/12615/ylvcnsYIK.webp`,
+  pairTilt: `${import.meta.env.BASE_URL}media/projects/12615/dgahzfYIL.webp`,
+  frameClose: `${import.meta.env.BASE_URL}media/projects/12615/asthdcYIM.webp`,
+  riverBank: `${import.meta.env.BASE_URL}media/projects/12615/sbazzcYIN.webp`,
+  logoClose: `${import.meta.env.BASE_URL}media/projects/12615/dzxhelYIO.webp`,
+  pairStand: `${import.meta.env.BASE_URL}media/projects/12615/fwsyvhYIP.webp`,
+  bindingClose: `${import.meta.env.BASE_URL}media/projects/12615/tbvojeYIQ.webp`,
+  promoCase: `${import.meta.env.BASE_URL}media/projects/12615/pqfzigYIR.webp`,
+  promoFix: `${import.meta.env.BASE_URL}media/projects/12615/lsycqnYIS.webp`,
+  promoEasyFix: `${import.meta.env.BASE_URL}media/projects/12615/wgdmhbYIT.webp`,
+  promoLight: `${import.meta.env.BASE_URL}media/projects/12615/emeiikYIU.webp`,
+  promoTactic: `${import.meta.env.BASE_URL}media/projects/12615/azhcslYIV.webp`,
+  video: `${import.meta.env.BASE_URL}media/projects/12615/tviqyyYIJ.mp4`,
 } as const;
 
 export const contacts = {
